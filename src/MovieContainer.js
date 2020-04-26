@@ -26,13 +26,20 @@ class Movie extends Component {
 
     handleChangeSort(event){
             const {name, value} = event.target
-            this.setState({
-                [name]: value
-            })
-            let value2 = parseFloat(value)
-            this.setState(prevState => {
-                const movies = prevState.movies.map((movie) => {
-                let rat=parseFloat(movie.rating)
+            
+            if(isNaN(value))
+            {
+                alert("Please don't enter letters")
+            }
+            else
+            {
+                this.setState({
+                    [name]: value
+                })
+                let value2 = parseFloat(value)
+                this.setState(prevState => {
+                    const movies = prevState.movies.map((movie) => {
+                    let rat=parseFloat(movie.rating)
                     if (rat < value2) {
                         movie.checkSort=false;
                       return movie;
@@ -44,7 +51,7 @@ class Movie extends Component {
                   movies,
                 };
               });
-    
+            }
         }
 
     handleChangeSearch(event){
